@@ -1,37 +1,39 @@
-# 📂 PHP - Server HTTP & API
+# 📂 PHP - Server HTTP e API
 
-Questa cartella contiene esempi pratici su come gestire richieste HTTP in **PHP**, utilizzando sia il metodo **GET** che **POST**. Inoltre, include un esempio di API REST.
+Questa cartella contiene esempi pratici per gestire richieste HTTP in PHP, sfruttando sia il metodo GET che POST. Include inoltre un esempio di API REST.
 
 ## 📌 Contenuto della Cartella
 
+La struttura dei file è la seguente:
+
 ```
 php/
-├── server.php        # Server PHP base con gestione GET e POST
-├── api.php           # Esempio di API REST in PHP
-├── secure_form.php   # Gestione sicura dei form
-└── README.md         # Spiegazione del codice PHP
+├── server.php        # Server PHP per la gestione di richieste GET e POST
+├── api.php           # API REST di esempio in PHP
+├── secure_form.php   # Script che dimostra come proteggere i form
+└── README.md         # Documentazione e spiegazioni sul codice
 ```
 
 ---
 
-## 🚀 Avviare il Server PHP
+## 🚀 Come Avviare il Server PHP
 
-Per testare i file, avvia un server locale con il seguente comando:
+Esegui un server locale utilizzando il comando:
 
 ```sh
-php -S localhost:8000 -t php/
+php -S localhost:8000 -t .
 ```
 
-Ora puoi aprire nel browser:
-- `http://localhost:8000/server.php`
-- `http://localhost:8000/api.php`
-- `http://localhost:8000/secure_form.php`
+Accedi ora nel browser ai seguenti URL:
+- http://localhost:8000/server.php
+- http://localhost:8000/api.php
+- http://localhost:8000/secure_form.php
 
 ---
 
-## 📌 1. `server.php` - Esempio di Server PHP
+## 📌 1. server.php - Gestione delle Richieste HTTP
 
-Questo script gestisce richieste **GET** e **POST**:
+Il file analizza le richieste HTTP e risponde in base al metodo:
 
 ```php
 <?php
@@ -43,26 +45,31 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 ?>
 ```
 
-Test con **GET**:
+Esempi di test:
+
+Richiesta GET:
 ```
 http://localhost:8000/server.php?nome=Mario&cognome=Rossi
 ```
 
-Test con **POST**:
+Richiesta POST:
 ```sh
 curl -X POST -d "nome=Mario&cognome=Rossi" http://localhost:8000/server.php
 ```
 
 ---
 
-## 📌 2. `api.php` - API REST Semplice
+## 📌 2. api.php - API REST Semplice
 
-Fornisce dati in formato **JSON** per simulare un'API REST.
+Questo script restituisce dati in formato JSON, simulando un'API REST:
 
 ```php
 <?php
 header("Content-Type: application/json");
-$data = ["messaggio" => "Benvenuto nell'API PHP!", "status" => 200];
+$data = [
+    "messaggio" => "Benvenuto nell'API PHP!",
+    "status" => 200
+];
 echo json_encode($data);
 ?>
 ```
@@ -72,16 +79,16 @@ Test:
 http://localhost:8000/api.php
 ```
 
-Risultato:
+Risultato atteso:
 ```json
 {"messaggio": "Benvenuto nell'API PHP!", "status": 200}
 ```
 
 ---
 
-## 📌 3. `secure_form.php` - Sicurezza nei Form
+## 📌 3. secure_form.php - Protezione dei Form
 
-Dimostra come **sanitizzare i dati utente** per prevenire attacchi **XSS** e **SQL Injection**.
+Esempio di come sanitizzare i dati inviati tramite form per evitare attacchi XSS e SQL Injection:
 
 ```php
 <?php
@@ -95,8 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ---
 
 ## 📚 Risorse Utili
-- [Documentazione PHP](https://www.php.net/manual/en/)
-- [Guida a $_GET e $_POST](https://www.w3schools.com/php/php_forms.asp)
 
-🔹 Se hai suggerimenti o vuoi migliorare gli script, sentiti libero di contribuire! 🚀
+- [Documentazione Ufficiale PHP](https://www.php.net/manual/en/)
+- [Guida su $_GET e $_POST](https://www.w3schools.com/php/php_forms.asp)
+
+Se hai suggerimenti o vuoi contribuire a migliorare gli script, sei il benvenuto!
 
